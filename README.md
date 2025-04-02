@@ -24,7 +24,10 @@ This repository will host the source code for a GitHub app designed to detect se
 - TBD
 
 ### **Contributing**
-This project welcomes contributions from developers, analysts, and researchers. Check out the `CONTRIBUTING.md` file for guidelines on how to get involved.
+---
+IMPORTANT!!
+To contribute to this repository, you **must** fork this repo, clone your fork and develop on your own forked repository, then PR into this.
+do not clone from this repository directly
 
 ### **License**
 This repository is licensed under [your chosen license]. See the `LICENSE` file for more details.
