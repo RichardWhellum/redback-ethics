@@ -97,4 +97,3 @@ def generate_json(sensitivity):
     with open(file_name, "w") as f:
         json.dump(data, f, indent=4)
 
-    print(f"✅ JSON file created: {file_name}")
