@@ -37,8 +37,8 @@ class DummyDataGenerator:
 
     def generate_csv(self):
         data = []
-        num_rows = random.randint(50, 500)
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        num_rows = random.randint(100, 1000)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         file_name = f"dummy_data_{self.sensitivity_label}_{timestamp}.csv"
 
         for _ in range(num_rows):
@@ -58,11 +58,15 @@ class DummyDataGenerator:
         pd.DataFrame(data).to_csv(file_name, index=False)  # Save data to a CSV file
         print(f"✅ CSV generated: {file_name}")  # Print a success message with the file name
 
-    def generate_json(self, num_records):
+    def generate_json(self):
         # Generate a timestamp for the file name
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+
         # Create a file name using sensitivity label and timestamp
         file_name = f"dummy_data_{self.sensitivity_label}_{timestamp}.json"
+
+        # Generate a random number of records
+        num_records = random.randint(10, 100)
 
         data = []  # Initialize a list to store all generated profiles
 
@@ -119,7 +123,7 @@ class DummyDataGenerator:
                 lines.append(sensitive)
 
         # Generate a timestamp for the file name
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         # Create a file name using sensitivity level and timestamp
         file_name = f"generated_txt_{self.sensitivity}_{timestamp}.txt"
         
@@ -145,7 +149,7 @@ class DummyDataGenerator:
                 doc.add_paragraph(sensitive)
 
         # Generate a timestamp for the file name
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         # Create a file name using sensitivity level and timestamp
         file_name = f"generated_docx_{self.sensitivity}_{timestamp}.docx"
         # Save the Word document to the file
@@ -172,8 +176,32 @@ class DummyDataGenerator:
                 pdf.multi_cell(page_width, 10, sensitive, align="L")  # Align sensitive data to the left
             pdf.ln(5)
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         pdf_file = f"generated_pdf_{self.sensitivity}_{timestamp}.pdf"
         pdf.output(pdf_file)
 
         print(f"✅ PDF generated: {pdf_file}")
+
+def generate_selected_files(generator_class, file_types, count):
+     while count > 0:
+        # Generate files based on the selected file types
+        if "1" in file_types:
+            generator_class.generate_csv()  # Generate CSV file
+        if "2" in file_types:
+            generator_class.generate_json()  # Generate JSON file
+        if "3" in file_types:
+            generator_class.generate_txt()  # Generate text file
+        if "4" in file_types:
+            generator_class.generate_docx()  # Generate Word document
+        if "5" in file_types:
+            generator_class.generate_pdf()  # Generate PDF file
+        if "6" in file_types:
+            generator_class.generate_csv() # Generate all file types
+            generator_class.generate_json()
+            generator_class.generate_txt()
+            generator_class.generate_docx()
+            generator_class.generate_pdf()
+
+        # Decrement the count of files to generate
+        count -= 1
+
