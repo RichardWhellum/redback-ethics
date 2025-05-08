@@ -39,7 +39,7 @@ class DummyDataGenerator:
         data = []
         num_rows = random.randint(100, 1000)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-        file_name = f"dummy_data_{self.sensitivity_label}_{timestamp}.csv"
+        file_name = f"dummy_csv_{self.sensitivity_label}_{timestamp}.csv"
 
         for _ in range(num_rows):
             row = {
@@ -63,7 +63,7 @@ class DummyDataGenerator:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
 
         # Create a file name using sensitivity label and timestamp
-        file_name = f"dummy_data_{self.sensitivity_label}_{timestamp}.json"
+        file_name = f"dummy_json_{self.sensitivity_label}_{timestamp}.json"
 
         # Generate a random number of records
         num_records = random.randint(10, 100)
@@ -125,7 +125,7 @@ class DummyDataGenerator:
         # Generate a timestamp for the file name
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         # Create a file name using sensitivity level and timestamp
-        file_name = f"generated_txt_{self.sensitivity}_{timestamp}.txt"
+        file_name = f"dummy_txt_{self.sensitivity}_{timestamp}.txt"
         
         # Write all lines to the text file
         with open(file_name, "w") as file:
@@ -151,7 +151,7 @@ class DummyDataGenerator:
         # Generate a timestamp for the file name
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         # Create a file name using sensitivity level and timestamp
-        file_name = f"generated_docx_{self.sensitivity}_{timestamp}.docx"
+        file_name = f"dummy_docx_{self.sensitivity}_{timestamp}.docx"
         # Save the Word document to the file
         doc.save(file_name)
 
@@ -177,7 +177,7 @@ class DummyDataGenerator:
             pdf.ln(5)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-        pdf_file = f"generated_pdf_{self.sensitivity}_{timestamp}.pdf"
+        pdf_file = f"dummy_pdf_{self.sensitivity}_{timestamp}.pdf"
         pdf.output(pdf_file)
 
         print(f"✅ PDF generated: {pdf_file}")
